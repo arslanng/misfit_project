@@ -1,0 +1,45 @@
+<%- include('partials/_header') -%>
+   <div class="back_re">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="title">
+                  <h2>Our Courses</h2>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- trainers -->
+   <div class="trainers">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage">
+                  <p>Lorem Ipsum available, but the majority have suffered </p>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-8 offset-2 p-5" style="background-color: black; color: white; text-align: center;">
+               <h3 style="color: white;">
+                  <%= course.name %>
+               </h3>
+               <p>
+                  <%= course.description %>
+               </p>
+               <p>Created By: <%= course.user.name %>
+               </p>
+               <form action="/courses/enroll" method="POST">
+                  <input type="hidden" name="course_id" value="<%= course.id %>">
+                  <% if(user && !user.courses.includes(course._id)){ %>
+                  <button type="submit" class="btn m-3">ENROLL</button>
+                  <% } %>
+               </form>
+            </div>
+
+         </div>
+      </div>
+   </div>
+   <!-- end trainers -->
+   <%- include('partials/_footer') -%>

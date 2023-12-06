@@ -1,0 +1,95 @@
+<%- include('partials/_header') -%>
+   <div class="back_re">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="title">
+                  <h2>Our Courses</h2>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- trainers -->
+   <div class="trainers">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage">
+                  <div class="col-6 offset-3">
+                     <!-- flash message start -->
+                     <% if(flashMessages){ %> 
+                        <% if(flashMessages.success){ %> 
+                            <div class="alert alert-success"> 
+                                <%= flashMessages.success %> 
+                            </div> 
+                    
+                        <% } else if(flashMessages.error){ %> 
+                            <div class="alert alert-danger"> 
+                                <%= flashMessages.error %> 
+                            </div> 
+                        <% } %> 
+                     <% } %>
+                     <!-- flash message end -->
+                     <div class="widget-search">
+                        <div class="site-search-area">
+                           <form method="GET" id="site-searchform" action="/courses">
+                              <div>
+                                 <input class="input-text form-control" name="search" id="search-k"
+                                    placeholder="Search..." type="text">
+                                 <button id="searchsubmit" value="Search" type="submit"></button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="m-3">
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-2">
+               <h3 style="color: white; border-bottom: 1px solid white; padding-bottom: 4px; margin-bottom: 16px;">
+                  Categories</h3>
+
+               <% for(i=0; i < categories.length ; i++){ %>
+                  <a href="/courses?categories=<%= categories[i].slug %>">
+                     <h3 style="color: white;">
+                        <%= categories[i].name %>
+                     </h3>
+                  </a>
+                  <% } %>
+                     <a href="/courses">
+                        <h3 style="color: blue;">tümünü göster</h3>
+                     </a>
+            </div>
+            <div class="col-md-10">
+               <div class="row">
+                  <% for(i=0; i < courses.length ; i++){ %>
+                     <div class="col-md-4">
+                        <div id="trai" class="trainer_box">
+                           <div class="trainer">
+                              <a href="/courses/<%= courses[i].slug %>">
+                                 <h3>
+                                    <%= courses[i].name %>
+                                 </h3>
+                                 <p>
+                                    <%= courses[i].description %>
+                                 </p>
+                                 <p style="font-size: x-small; color: gray;">
+                                    Created by: <%= courses[i].user.name %>
+                                 </p>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                     <% } %>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end trainers -->
+   <%- include('partials/_footer') -%>
